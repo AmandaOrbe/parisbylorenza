@@ -1,0 +1,11 @@
+<h1>restaurants</h1>
+<form action="/restaurants" method="get">
+  <input type="text" name="food_type" placeholder="What kind of food?">
+  <input type="submit">
+</form>
+<ul>
+  <% @restaurants.each do |id, restaurant| %>
+    <%= link_to restaurant[:name], restaurant_path(id) %>
+    <p><%= restaurant[:address] %></p>
+  <% end %>
+</ul>
