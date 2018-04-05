@@ -1,2 +1,7 @@
 <h1>show</h1>
-<%= @restaurant.name %>
+
+<p><%= @restaurant.name %></p>
+    <p><%= @restaurant.address %></p>
+    <p><%= "*" * @restaurant.rating %></p>
+
+  <%=  link_to  "back", restaurants_path  %>

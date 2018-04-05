@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
-    # fake DB
+
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:food_type].blank?
@@ -12,12 +13,43 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def create
-    raise
-    puts "todo: create the restaurant"
+  def show
+
   end
 
-  def show
-    @restaurant = RESTAURANTS[params[:id].to_i]
+  def new
+    @restaurant = Restaurant.new
   end
+
+  def create
+   Restaurant.create(restaurant_params)
+   redirect_to restaurants_path
+  end
+
+  def edit
+
+  end
+
+  def update
+
+     @restaurant.update(restaurant_params)
+   redirect_to restaurant_path(@restaurant)
+  end
+
+  def destroy
+    @restaurant.destroy
+    redirect_to restaurants_path
+  end
+
+  private
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address, :rating)
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+
+  end
+
+
 end

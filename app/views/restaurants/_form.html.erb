@@ -1,0 +1,9 @@
+<%= form_for @restaurant do |f| %>
+  <%= f.label :name, "Name of the Restaurant"  %>
+  <%=f.text_field :name%>
+  <%= f.label :address, "Address of the Restaurant"  %>
+  <%=f.text_field :address%>
+  <%= f.label :rating, "rating of the Restaurant"  %>
+  <%=f.text_field :rating%>
+  <%=f.submit%>
+<% end %>

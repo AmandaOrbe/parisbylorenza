@@ -6,8 +6,9 @@
 <ul>
   <% @restaurants.each do |restaurant| %>
 
-    <p><%= restaurant.name %></p>
+    <%=link_to restaurant.name , restaurant_path(restaurant) %></p>
     <p><%= restaurant.address %></p>
     <p><%= "*" * restaurant.rating %></p>
+    <%=link_to "delete" , restaurant_path(restaurant),  method: :delete,  data: { confirm: "Are you sure?" }%></p>
   <% end %>
 </ul>
