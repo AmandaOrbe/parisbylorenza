@@ -3,10 +3,19 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
 
-  get 'restaurants', to: 'restaurants#index'
-  post 'restaurants', to: 'restaurants#create'
+  resources :restaurants
 
-  get 'restaurants/:id', to: 'restaurants#show', as: :restaurant
+  # #READ
+  #   get 'restaurants', to: 'restaurants#index'
+  #   get 'restaurants/:id', to: 'restaurants#show', as: :restaurant
+  # #CREATE
+  #   get 'restaurants/new', to: 'restaurants#new'
+  #   post 'restaurants', to: 'restaurants#create'
+  # #UPDATE
+  #   get "restaurants/:id/edit", to: "restaurants#edit"
+  #   patch "restaurants/:id", to: "restaurants#update"
+  # #DELETE
+  #   delete "restaurants/:id", to: "restaurants#destroy"
 
 
   root to: 'pages#home'
