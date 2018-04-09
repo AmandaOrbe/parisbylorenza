@@ -1,0 +1,14 @@
+<h1>ADMIN restaurants</h1>
+<form action="/restaurants" method="get">
+  <input type="text" name="food_type" placeholder="What kind of food?">
+  <input type="submit">
+</form>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+
+    <%=link_to restaurant.name , restaurant_path(restaurant) %></p>
+    <p><%= restaurant.address %></p>
+    <p><%= "*" * restaurant.rating %></p>
+    <%=link_to "delete" , restaurant_path(restaurant),  method: :delete,  data: { confirm: "Are you sure?" }%>
+  <% end %>
+</ul>

@@ -1,7 +1,14 @@
 class RestaurantsController < ApplicationController
 
 
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :chef]
+
+  def chef
+
+  end
+  def top
+    @top_restaurants = Restaurant.where(rating: 5)
+  end
 
   def index
     if params[:food_type].blank?
@@ -25,8 +32,13 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-   Restaurant.create(restaurant_params)
-   redirect_to restaurants_path
+  @restaurant = Restaurant.new(restaurant_params)
+  if @restaurant.save
+    redirect_to restaurants_path
+  else
+    render :new
+  end
+
   end
 
   def edit
@@ -34,9 +46,13 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-
-     @restaurant.update(restaurant_params)
-   redirect_to restaurant_path(@restaurant)
+def update
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
+  end
   end
 
   def destroy

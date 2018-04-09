@@ -1,9 +1,27 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+
+  get 'reviews/create'
+
   get 'contact', to: 'pages#contact'
 
   get 'about', to: 'pages#about'
 
-  resources :restaurants
+  resources :restaurants do
+    resources :reviews, only: [:new, :create]
+    collection do
+      get "top", to: "restaurants#top"
+    end
+    member do
+      get "chef", to: "restaurants#chef"
+
+    end
+
+  end
+
+  namespace :admin do
+    resources :restaurants, only: [:index]
+  end
 
   # #READ
   #   get 'restaurants', to: 'restaurants#index'
